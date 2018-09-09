@@ -67,3 +67,8 @@ var typed = new Typed("#intro-description", {
   backSpeed: 50,
   loop: true
 });
+
+$(".technologies-section").parallax({
+  imageSrc: "../images/background-stowe.jpg",
+  position: "right center"
+});
