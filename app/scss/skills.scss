@@ -1,0 +1,11 @@
+@import "branding";
+
+.skills-section {
+  background-color: $background-color-2;
+
+  .skill {
+    h4 {
+      margin: 0.7rem 0;
+    }
+  }
+}

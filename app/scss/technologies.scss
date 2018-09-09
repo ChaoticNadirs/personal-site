@@ -1,0 +1,22 @@
+@import "branding";
+
+.technologies-section {
+  background: url(../images/background-stowe.jpg);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-attachment: fixed;
+  background-size: cover;
+  color: white;
+  text-align: center;
+  padding: 12rem 0 9rem 0;
+
+  .technology-icons {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+
+    .technology-icon {
+      margin: 0 1rem 3rem 1rem;
+    }
+  }
+}
