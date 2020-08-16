@@ -1,16 +1,19 @@
 const theme = {
   colors: {
     // text
-    text: "#b8b8b8",
+    text: "#b0b3b8",
+    textEmphasis: "#e4e6eb",
     // background
-    backgroundDark: "#0e0e0e",
-    backgroundLight: "#111111",
+    backgroundDark: "#101112",
+    backgroundLight: "#18191a",
     // brand
     primary: "#00b3aa",
     // components
-    navbar: "#1c1e21",
+    navbar: "#242526",
     navbarText: "white",
-    footer: "#1c1e21",
+    navbarBorder: "#3e4042",
+    footer: "#242526",
+    card: "#242526",
   },
   breakpoints: {
     xxl: "@media screen and (min-width: 1400px)",
@@ -23,7 +26,7 @@ const theme = {
     heading: "montserrat",
   },
   spacing: {
-    lg: "3rem",
+    lg: "5rem",
   },
 };
 

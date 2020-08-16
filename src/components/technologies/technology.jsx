@@ -6,7 +6,7 @@ import { string } from "prop-types";
 const StyledTechnology = styled.li`
   display: block;
   color: white;
-  margin: 0 0.5rem;
+  margin: 0 1.25rem 2rem 1.25rem;
   transition: all 0.2s ease-in-out;
 
   :hover {

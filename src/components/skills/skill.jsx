@@ -4,12 +4,18 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { string } from "prop-types";
 
 const StyledSkill = styled.div`
-  margin-bottom: 4rem;
+  margin-bottom: ${(props) => props.theme.spacing.lg};
+
+  p {
+    margin-bottom: 0;
+  }
 `;
 
 const Title = styled.h3`
-  font-size: 1.5rem;
+  font-size: 1.25rem;
   margin: 0.75rem 0;
+  text-transform: uppercase;
+  letter-spacing: 0.1rem;
 `;
 
 const Skill = ({ icon, title, text }) => {

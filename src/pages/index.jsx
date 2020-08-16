@@ -8,6 +8,9 @@ import Intro from "../components/intro/intro";
 import About from "../components/about/about";
 import Skills from "../components/skills/skills";
 import Technologies from "../components/technologies/technologies";
+import Portfolio from "../components/portfolio/portfolio";
+import Testimonials from "../components/testimonials/testimonials";
+import Blog from "../components/blog/blog";
 
 const IndexPage = () => (
   <Layout>
@@ -16,6 +19,9 @@ const IndexPage = () => (
     <About />
     <Skills />
     <Technologies />
+    <Blog />
+    <Portfolio />
+    <Testimonials />
     {/* <h1>Hi people</h1>
     <p>Welcome to your new Gatsby site.</p>
     <p>Now go build something great.</p>

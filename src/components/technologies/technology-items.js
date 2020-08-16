@@ -22,7 +22,7 @@ const getTechnologies = () => {
     },
     {
       id: 6,
-      icon: ["fab", "docker"],
+      icon: ["fab", "git-alt"],
     },
     {
       id: 7,
@@ -34,7 +34,7 @@ const getTechnologies = () => {
     },
     {
       id: 9,
-      icon: ["fab", "git-alt"],
+      icon: ["fab", "docker"],
     },
   ];
 };

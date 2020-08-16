@@ -12,6 +12,10 @@ const StyledTechnologies = styled.section`
   background-position: 100% 0;
   background-size: cover;
   background-attachment: fixed;
+
+  @media (orientation: portrait) {
+    background-position: 80% 0;
+  }
 `;
 
 const TechnologyList = styled.ul`
@@ -21,10 +25,6 @@ const TechnologyList = styled.ul`
   display: flex;
   justify-content: space-evenly;
   flex-wrap: wrap;
-
-  li {
-    margin-bottom: 2rem;
-  }
 `;
 
 const Technologies = () => {

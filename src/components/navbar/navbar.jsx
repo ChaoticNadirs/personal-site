@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import Burger from "./burger";
 import Menu from "./menu";
 import Container from "../container/container";
@@ -17,10 +17,16 @@ const StyledNav = styled.nav`
   padding-top: ${(props) => (props.isAtTop ? "1.75rem" : "0.75rem")};
   padding-bottom: ${(props) => (props.isAtTop ? "1.75rem" : "0.75rem")};
   transition: 0.3s ease-out;
-  background-color: ${(props) =>
-    props.isAtTop && !props.isBurgerActive
-      ? "transparent"
-      : props.theme.colors.navbar};
+  background-color: ${(props) => props.theme.colors.navbar};
+  border-bottom: 1px solid ${(props) => props.theme.colors.navbarBorder};
+
+  ${(props) =>
+    props.isAtTop &&
+    !props.isBurgerActive &&
+    css`
+      background-color: transparent;
+      border-bottom: none;
+    `}
 `;
 
 const StyledContainer = styled(Container)`
