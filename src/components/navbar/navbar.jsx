@@ -17,8 +17,9 @@ const StyledNav = styled.nav`
   padding-top: ${(props) => (props.isAtTop ? "1.75rem" : "0.75rem")};
   padding-bottom: ${(props) => (props.isAtTop ? "1.75rem" : "0.75rem")};
   transition: 0.3s ease-out;
-  background-color: ${(props) => props.theme.colors.navbar};
-  border-bottom: 1px solid ${(props) => props.theme.colors.navbarBorder};
+  background-color: ${(props) => props.theme.navbar.backgroundColor};
+  border-bottom: ${(props) => props.theme.navbar.border};
+  box-shadow: ${(props) => props.theme.navbar.shadow};
 
   ${(props) =>
     props.isAtTop &&
@@ -27,6 +28,17 @@ const StyledNav = styled.nav`
       background-color: transparent;
       border-bottom: none;
     `}
+
+  a {
+    color: ${(props) => props.theme.navbar.color};
+
+    ${(props) =>
+      props.isAtTop &&
+      !props.isBurgerActive &&
+      css`
+        color: white;
+      `}
+  }
 `;
 
 const StyledContainer = styled(Container)`
@@ -42,7 +54,6 @@ const Brand = styled.a`
   font-size: 1.25rem;
   text-decoration: none;
   white-space: nowrap;
-  color: ${(props) => props.theme.colors.navbarText};
 `;
 
 const Navbar = () => {

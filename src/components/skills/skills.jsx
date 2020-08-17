@@ -6,8 +6,8 @@ import getSkills from "./skill-items";
 import Skill from "./skill";
 
 const StyledSection = styled.section`
-  background-color: ${(props) => props.theme.colors.backgroundLight};
-  color: ${(props) => props.theme.colors.text};
+  background-color: ${(props) => props.theme.section.backgroundLight};
+  color: ${(props) => props.theme.typography.colors.text};
   padding: ${(props) => props.theme.spacing.lg} 0 0 0;
 `;
 

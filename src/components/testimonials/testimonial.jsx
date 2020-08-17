@@ -10,9 +10,11 @@ const StyledTestimonial = styled.div`
   word-wrap: break-word;
   background-clip: border-box;
   margin-bottom: ${(props) => props.theme.spacing.lg};
-  background-color: ${(props) => props.theme.colors.card};
+  background-color: ${(props) => props.theme.card.backgroundColor};
   border-radius: 0.25rem;
   margin-bottom: 2rem;
+  border: ${(props) => props.theme.card.border};
+  box-shadow: ${(props) => props.theme.card.shadow};
 
   ${(props) => props.theme.breakpoints.lg} {
     flex: 1 0 0%;
@@ -29,7 +31,7 @@ const Content = styled.div`
 const Person = styled.div`
   display: flex;
   align-items: center;
-  color: ${(props) => props.theme.colors.textEmphasis};
+  color: ${(props) => props.theme.typography.colors.textEmphasis};
 
   img {
     border-radius: 100%;

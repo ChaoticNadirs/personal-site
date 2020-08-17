@@ -15,10 +15,10 @@ const SocialMediaList = styled.ul`
     }
 
     a {
-      color: ${(props) => props.theme.colors.text};
+      color: ${(props) => props.theme.typography.colors.text};
 
       :hover {
-        color: ${(props) => props.theme.colors.primary};
+        color: ${(props) => props.theme.brand.primary};
       }
     }
   }

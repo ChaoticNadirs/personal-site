@@ -10,9 +10,9 @@ const StyledBurger = styled.button`
   width: 2.5rem;
   margin-left: auto;
   background-color: transparent;
-  border: 1px solid ${(props) => props.theme.colors.navbarText};
+  border: 1px solid ${(props) => props.theme.navbar.color};
   border-radius: 0.25rem;
-  color: ${(props) => props.theme.colors.navbarText};
+  color: ${(props) => props.theme.navbar.color};
 
   ${(props) => props.theme.breakpoints.md} {
     display: none;

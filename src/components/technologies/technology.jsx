@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { string } from "prop-types";
+import { string, arrayOf } from "prop-types";
 
 const StyledTechnology = styled.li`
   display: block;
@@ -10,7 +10,7 @@ const StyledTechnology = styled.li`
   transition: all 0.2s ease-in-out;
 
   :hover {
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.brand.primary};
   }
 `;
 
@@ -25,7 +25,7 @@ const Technology = ({ icon }) => {
 };
 
 Technology.propTypes = {
-  icon: string.isRequired,
+  icon: arrayOf(string).isRequired,
 };
 
 export default Technology;

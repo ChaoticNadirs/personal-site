@@ -24,8 +24,8 @@ const Links = styled.div`
 
 const NavItem = styled.a`
   cursor: pointer;
-  color: ${(props) => props.theme.colors.navbarText};
-  font-family: ${(props) => props.theme.fonts.heading};
+  color: ${(props) => props.theme.navbar.color};
+  font-family: ${(props) => props.theme.typography.fonts.heading};
   font-size: 0.875rem;
   display: block;
   line-height: 1.5;
@@ -34,7 +34,7 @@ const NavItem = styled.a`
   text-decoration: none;
 
   :hover {
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.brand.primary};
   }
 
   ${(props) => props.theme.breakpoints.md} {

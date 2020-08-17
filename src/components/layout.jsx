@@ -33,11 +33,14 @@ import {
   faCode,
   faDatabase,
   faWrench,
+  faMoon,
 } from "@fortawesome/free-solid-svg-icons";
-import theme from "../themes/theme";
+import darkTheme from "../themes/dark";
+import lightTheme from "../themes/light";
 import GlobalStyle from "../themes/global-style";
 import Footer from "./footer/footer";
 import Navbar from "./navbar/navbar";
+import useColorScheme from "../themes/color-scheme";
 
 library.add(
   faGithub,
@@ -58,7 +61,8 @@ library.add(
   faCog,
   faCode,
   faDatabase,
-  faWrench
+  faWrench,
+  faMoon
 );
 
 const Layout = ({ children }) => {
@@ -72,15 +76,22 @@ const Layout = ({ children }) => {
   //   }
   // `);
 
+  const [colorScheme, toggleColorScheme] = useColorScheme();
+
+  const theme = colorScheme === "light" ? lightTheme : darkTheme;
+
   return (
-    <>
-      <GlobalStyle theme={theme} />
-      <ThemeProvider theme={theme}>
+    <ThemeProvider theme={theme}>
+      <>
+        <GlobalStyle />
         <Navbar />
         <main>{children}</main>
-        <Footer />
-      </ThemeProvider>
-    </>
+        <Footer
+          darkMode={colorScheme === "dark"}
+          onDarkModeToggle={toggleColorScheme}
+        />
+      </>
+    </ThemeProvider>
   );
 };
 

@@ -12,16 +12,16 @@ const Paragraph = styled.p`
   }
 
   a {
-    color: ${(props) => props.theme.colors.primary};
+    color: ${(props) => props.theme.brand.primary};
 
     :hover {
-      color: ${(props) => props.theme.colors.text};
+      color: ${(props) => props.theme.typography.colors.text};
     }
   }
 `;
 
 const Subheading = styled.strong`
-  color: ${(props) => props.theme.colors.primary};
+  color: ${(props) => props.theme.brand.primary};
   text-transform: uppercase;
   font-size: 1.875rem;
   margin-bottom: 1rem;

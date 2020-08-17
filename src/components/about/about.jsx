@@ -6,8 +6,8 @@ import AboutText from "./about-text";
 import SectionHeading from "../typography/section-heading";
 
 const StyledSection = styled.section`
-  background-color: ${(props) => props.theme.colors.backgroundDark};
-  color: ${(props) => props.theme.colors.text};
+  background-color: ${(props) => props.theme.section.backgroundDark};
+  color: ${(props) => props.theme.typography.colors.text};
   padding: ${(props) => props.theme.spacing.lg} 0;
 `;
 

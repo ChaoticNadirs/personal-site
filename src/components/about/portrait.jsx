@@ -8,6 +8,8 @@ const Image = styled(Img)`
   background-color: white;
   margin-top: 8px;
   text-align: center;
+  box-shadow: ${(props) => props.theme.card.shadow};
+  border-radius: 0.25rem;
 `;
 
 const Portrait = () => {

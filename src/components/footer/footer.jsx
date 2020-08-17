@@ -1,11 +1,13 @@
 import React from "react";
 import styled from "styled-components";
-import SocialMedia from "../social-media/social-media";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { bool, func } from "prop-types";
 import Container from "../container/container";
+import Switch from "../switch/switch";
 
 const StyledFooter = styled.footer`
-  background-color: ${(props) => props.theme.colors.footer};
-  color: ${(props) => props.theme.colors.text};
+  background-color: ${(props) => props.theme.footer.backgroundColor};
+  color: ${(props) => props.theme.footer.color};
   padding: 3rem 0;
 `;
 
@@ -30,17 +32,40 @@ const Copyright = styled.div`
   }
 `;
 
-const Footer = () => {
+const DarkModeSwitch = styled.div`
+  display: flex;
+  align-items: center;
+
+  svg {
+    font-size: 1.25rem;
+    margin-right: 0.5rem;
+  }
+`;
+
+const Footer = ({ darkMode, onDarkModeToggle }) => {
   return (
     <StyledFooter>
       <StyledContainer>
         <Copyright>
           © Christian Coda {new Date().getFullYear()}. All rights reserved.
         </Copyright>
-        <SocialMedia />
+        <DarkModeSwitch>
+          <FontAwesomeIcon icon="moon" />
+          <Switch
+            name="darkMode"
+            id="dark-mode"
+            isOn={darkMode}
+            onToggle={onDarkModeToggle}
+          />
+        </DarkModeSwitch>
       </StyledContainer>
     </StyledFooter>
   );
+};
+
+Footer.propTypes = {
+  darkMode: bool.isRequired,
+  onDarkModeToggle: func.isRequired,
 };
 
 export default Footer;
