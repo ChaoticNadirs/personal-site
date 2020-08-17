@@ -50,7 +50,7 @@ const TextColumn = styled.div`
 
 const About = () => {
   return (
-    <StyledSection>
+    <StyledSection id="about">
       <Container>
         <SectionHeading text="About Me" />
         <Row>

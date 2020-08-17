@@ -43,7 +43,7 @@ const Subheading = styled.h2`
 
 const Intro = () => {
   return (
-    <StyledHeader>
+    <StyledHeader id="intro">
       <BackgroundVideo muted autoPlay loop playsInline>
         <source src={backgroundVideo1080mp4} type="video/mp4" />
       </BackgroundVideo>

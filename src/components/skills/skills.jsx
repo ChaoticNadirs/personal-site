@@ -34,7 +34,7 @@ const Skills = () => {
   const skills = getSkills();
 
   return (
-    <StyledSection>
+    <StyledSection id="skills">
       <Container>
         <SectionHeading text="Skills" />
         <Row>

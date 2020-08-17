@@ -1,6 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { bool } from "prop-types";
+import { Link } from "react-scroll";
+import getMenuItems from "./menu-items";
 
 const StyledMenu = styled.div`
   display: ${(props) => (props.active ? "block" : "none")};
@@ -20,41 +22,56 @@ const Links = styled.div`
   ${(props) => props.theme.breakpoints.md} {
     flex-direction: row;
   }
-`;
 
-const NavItem = styled.a`
-  cursor: pointer;
-  color: ${(props) => props.theme.navbar.color};
-  font-family: ${(props) => props.theme.typography.fonts.heading};
-  font-size: 0.875rem;
-  display: block;
-  line-height: 1.5;
-  padding: 0.5rem 0;
-  text-transform: uppercase;
-  text-decoration: none;
+  a {
+    cursor: pointer;
+    color: ${(props) => props.theme.navbar.color};
+    font-family: ${(props) => props.theme.typography.fonts.heading};
+    font-size: 0.875rem;
+    display: block;
+    line-height: 1.5;
+    padding: 0.5rem 0;
+    text-transform: uppercase;
+    text-decoration: none;
 
-  :hover {
-    color: ${(props) => props.theme.brand.primary};
-  }
+    :hover {
+      color: ${(props) => props.theme.brand.primary};
+    }
 
-  ${(props) => props.theme.breakpoints.md} {
-    padding: 0.5rem 1rem;
+    ${(props) => props.theme.breakpoints.md} {
+      padding: 0.5rem 1rem;
 
-    :last-child {
-      padding-right: 0;
+      :last-child {
+        padding-right: 0;
+      }
     }
   }
 `;
 
 const Menu = ({ isOpen }) => {
+  const offset = -65;
+  const duration = 500;
+
+  const menuItems = getMenuItems();
+
   return (
     <StyledMenu active={isOpen}>
       <Links>
-        <NavItem>Home</NavItem>
-        <NavItem>Profile</NavItem>
-        <NavItem>Skills</NavItem>
-        <NavItem>Portfolio</NavItem>
-        <NavItem>Recommendations</NavItem>
+        {menuItems.map(({ id, to, text }) => {
+          return (
+            <Link
+              key={id}
+              activeClass="active"
+              to={to}
+              spy
+              smooth
+              offset={offset}
+              duration={duration}
+            >
+              {text}
+            </Link>
+          );
+        })}
       </Links>
     </StyledMenu>
   );

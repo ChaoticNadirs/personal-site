@@ -11,7 +11,7 @@ const StyledSection = styled.section`
 
 const Portfolio = () => {
   return (
-    <StyledSection>
+    <StyledSection id="portfolio">
       <Container>
         <SectionHeading text="Portfolio" />
       </Container>

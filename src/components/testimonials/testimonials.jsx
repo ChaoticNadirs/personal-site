@@ -25,7 +25,7 @@ const Testimonials = () => {
   const skills = getTestimonials();
 
   return (
-    <StyledSection>
+    <StyledSection id="testimonials">
       <Container>
         <SectionHeading text="Testimonials" />
         <Deck>
