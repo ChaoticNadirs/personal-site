@@ -24,6 +24,7 @@ import {
   faSass,
   faReact,
   faMicrosoft,
+  faBootstrap,
 } from "@fortawesome/free-brands-svg-icons";
 import {
   faEnvelope,
@@ -34,6 +35,8 @@ import {
   faDatabase,
   faWrench,
   faMoon,
+  faChevronLeft,
+  faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import darkTheme from "../themes/dark";
 import lightTheme from "../themes/light";
@@ -62,7 +65,10 @@ library.add(
   faCode,
   faDatabase,
   faWrench,
-  faMoon
+  faMoon,
+  faChevronLeft,
+  faChevronRight,
+  faBootstrap
 );
 
 const Layout = ({ children }) => {

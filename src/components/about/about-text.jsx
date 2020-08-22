@@ -10,14 +10,6 @@ const Paragraph = styled.p`
       margin-bottom: 3rem;
     }
   }
-
-  a {
-    color: ${(props) => props.theme.brand.primary};
-
-    :hover {
-      color: ${(props) => props.theme.typography.colors.text};
-    }
-  }
 `;
 
 const Subheading = styled.strong`

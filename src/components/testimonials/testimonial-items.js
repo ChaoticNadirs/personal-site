@@ -26,7 +26,7 @@ const getTestimonials = () => {
       title: "Head of Software Testing",
       name: "John Sumner",
       text:
-        "Christian has strived for quality in his products. He is highly respected by his co-workers and many members of the department including all of my testing team. Anyone who employs Christian is certainly going to have an excellent addition to their business",
+        "Christian has strived for quality in his products. He is highly respected by his co-workers and many members of the department including all of my testing team. Anyone who employs Christian is certainly going to have an excellent addition to their business.",
     },
   ];
 };

@@ -14,8 +14,6 @@ const StyledSkill = styled.div`
 const Title = styled.h3`
   font-size: 1.25rem;
   margin: 0.75rem 0;
-  text-transform: uppercase;
-  letter-spacing: 0.1rem;
 `;
 
 const Skill = ({ icon, title, text }) => {

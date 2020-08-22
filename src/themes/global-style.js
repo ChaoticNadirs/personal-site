@@ -27,6 +27,8 @@ const GlobalStyle = createGlobalStyle`
         .heading}, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;;
     margin-top: 0;
     margin-bottom: 0.5rem;
+    letter-spacing: 0.1rem;
+    text-transform: uppercase;
   }
 
   p {
@@ -36,7 +38,16 @@ const GlobalStyle = createGlobalStyle`
 
   a {
     text-decoration: none;
-    transition: all 0.3s ease-in-out;
+    color: ${(props) => props.theme.brand.primary};
+    transition: color 0.3s ease-in-out;
+
+    :visited, :active {
+      color: ${(props) => props.theme.brand.primary};
+    }
+
+    :hover {
+      color: ${(props) => props.theme.typography.colors.textEmphasis};
+    }
   }
 
   section {

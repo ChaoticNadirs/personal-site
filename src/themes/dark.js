@@ -34,6 +34,12 @@ const theme = {
   input: {
     backgroundColor: "3a3b3c",
   },
+  carousel: {
+    dotColor: "#b0b3b8",
+  },
+  switch: {
+    backgroundColor: "3a3b3c",
+  },
   breakpoints: {
     xxl: "@media screen and (min-width: 1400px)",
     xl: "@media screen and (min-width: 1200px)",
