@@ -46,6 +46,10 @@ const Links = styled.div`
       }
     }
   }
+
+  a.active {
+    color: ${(props) => props.theme.brand.primary};
+  }
 `;
 
 const Menu = ({ isOpen }) => {

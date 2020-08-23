@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { string, arrayOf, shape } from "prop-types";
+import { string, arrayOf, shape, number } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 const StyledPorfolioItem = styled.div`
@@ -109,7 +109,7 @@ PortfolioItem.propTypes = {
   text: string.isRequired,
   urlText: string.isRequired,
   technologies: arrayOf(
-    shape({ id: string.isRequired, icon: arrayOf(string).isRequired })
+    shape({ id: number.isRequired, icon: arrayOf(string).isRequired })
   ).isRequired,
 };
 
