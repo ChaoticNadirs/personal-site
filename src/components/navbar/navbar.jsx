@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
+import { bool } from "prop-types";
 import Burger from "./burger";
 import Menu from "./menu";
 import Container from "../container/container";
@@ -56,7 +57,7 @@ const Brand = styled.a`
   white-space: nowrap;
 `;
 
-const Navbar = () => {
+const Navbar = ({ useScrollLinks }) => {
   const [isBurgerActive, setIsBurgerActive] = useState(false);
   const [isAtTop, setIsAtTop] = useState(true);
 
@@ -79,12 +80,20 @@ const Navbar = () => {
       isBurgerActive={isBurgerActive}
     >
       <StyledContainer>
-        <Brand href="#home">CC</Brand>
+        <Brand href="/#intro">CC</Brand>
         <Burger onClick={onBurgerClick} />
-        <Menu isOpen={isBurgerActive} />
+        <Menu isOpen={isBurgerActive} useScrollLinks={useScrollLinks} />
       </StyledContainer>
     </StyledNav>
   );
+};
+
+Navbar.propTypes = {
+  useScrollLinks: bool,
+};
+
+Navbar.defaultProps = {
+  useScrollLinks: false,
 };
 
 export default Navbar;

@@ -12,8 +12,8 @@ import Testimonials from "../components/testimonials/testimonials";
 import Blog from "../components/blog/blog";
 
 const IndexPage = ({ data }) => (
-  <Layout>
-    <SEO title="Home" />
+  <Layout useScrollLinks>
+    <SEO title="Christian Coda - Software Engineer" />
     <Intro />
     <About />
     <Skills />

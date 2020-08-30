@@ -6,7 +6,7 @@
  */
 
 import React from "react";
-import PropTypes from "prop-types";
+import { node, bool } from "prop-types";
 import { ThemeProvider } from "styled-components";
 // import { useStaticQuery, graphql } from "gatsby";
 
@@ -71,7 +71,7 @@ library.add(
   faBootstrap
 );
 
-const Layout = ({ children }) => {
+const Layout = ({ children, useScrollLinks }) => {
   // const data = useStaticQuery(graphql`
   //   query SiteTitleQuery {
   //     site {
@@ -90,7 +90,7 @@ const Layout = ({ children }) => {
     <ThemeProvider theme={theme}>
       <>
         <GlobalStyle />
-        <Navbar />
+        <Navbar useScrollLinks={useScrollLinks} />
         <main>{children}</main>
         <Footer
           darkMode={colorScheme === "dark"}
@@ -102,7 +102,12 @@ const Layout = ({ children }) => {
 };
 
 Layout.propTypes = {
-  children: PropTypes.node.isRequired,
+  children: node.isRequired,
+  useScrollLinks: bool,
+};
+
+Layout.defaultProps = {
+  useScrollLinks: false,
 };
 
 export default Layout;

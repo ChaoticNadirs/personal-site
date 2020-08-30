@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 import { bool } from "prop-types";
-import { Link } from "react-scroll";
+import { Link as ScrollLink } from "react-scroll";
+import { Link } from "gatsby";
 import getMenuItems from "./menu-items";
 
 const StyledMenu = styled.div`
@@ -38,6 +39,10 @@ const Links = styled.div`
       color: ${(props) => props.theme.brand.primary};
     }
 
+    :visited {
+      color: ${(props) => props.theme.navbar.color};
+    }
+
     ${(props) => props.theme.breakpoints.md} {
       padding: 0.5rem 1rem;
 
@@ -52,7 +57,7 @@ const Links = styled.div`
   }
 `;
 
-const Menu = ({ isOpen }) => {
+const Menu = ({ isOpen, useScrollLinks }) => {
   const offset = -65;
   const duration = 500;
 
@@ -61,21 +66,29 @@ const Menu = ({ isOpen }) => {
   return (
     <StyledMenu active={isOpen}>
       <Links>
-        {menuItems.map(({ id, to, text }) => {
-          return (
-            <Link
-              key={id}
-              activeClass="active"
-              to={to}
-              spy
-              smooth
-              offset={offset}
-              duration={duration}
-            >
-              {text}
-            </Link>
-          );
-        })}
+        {useScrollLinks
+          ? menuItems.map(({ id, to, text }) => {
+              return (
+                <ScrollLink
+                  key={id}
+                  activeClass="active"
+                  to={to}
+                  spy
+                  smooth
+                  offset={offset}
+                  duration={duration}
+                >
+                  {text}
+                </ScrollLink>
+              );
+            })
+          : menuItems.map(({ id, to, text }) => {
+              return (
+                <Link key={id} to={`/#${to}`}>
+                  {text}
+                </Link>
+              );
+            })}
       </Links>
     </StyledMenu>
   );
@@ -83,10 +96,12 @@ const Menu = ({ isOpen }) => {
 
 Menu.propTypes = {
   isOpen: bool,
+  useScrollLinks: bool,
 };
 
 Menu.defaultProps = {
   isOpen: false,
+  useScrollLinks: false,
 };
 
 export default Menu;
