@@ -1,18 +1,18 @@
 import React from "react";
-import { graphql } from "gatsby";
-import { string, shape } from "prop-types";
+import { graphql, Link } from "gatsby";
+import { string, shape, arrayOf } from "prop-types";
 import styled from "styled-components";
-import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import BackgroundImage from "gatsby-background-image";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Container from "../components/container/container";
+import BlogPostDetail from "../components/blog/blog-post-detail";
 
 const Header = styled(BackgroundImage)`
   background-color: ${(props) => props.theme.brand.primary};
   color: white;
   font-size: 3rem;
-  padding: 9rem 0 8rem 0;
+  padding: 10rem 0 9rem 0;
   text-transform: uppercase;
   text-align: center;
   width: 100%;
@@ -24,10 +24,10 @@ const Header = styled(BackgroundImage)`
 
 const Overlay = styled.div`
   position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: 0px;
-  left: 0px;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
   background-color: rgba(0, 0, 0, 0.75);
 `;
 
@@ -40,38 +40,49 @@ const Section = styled.section`
   color: ${(props) => props.theme.typography.colors.text};
 `;
 
-const Row = styled.div`
+const Links = styled.div`
   display: flex;
-  flex-direction: column;
-  margin: 0 -1rem;
-  padding-top: 2rem;
+  justify-content: space-between;
+  padding: 3rem 0;
+`;
 
-  ${(props) => props.theme.breakpoints.md} {
-    flex-direction: row;
-    flex-wrap: wrap;
+const BlogLink = styled.div`
+  display: flex;
+  align-items: center;
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 0.875rem;
+  color: ${(props) => props.theme.brand.primary};
+
+  :last-of-type {
+    text-align: right;
+  }
+
+  div:first-child {
+    margin-right: 0.75rem;
   }
 `;
 
-const ContentColumn = styled.div`
-  padding: 0 1rem;
-
-  ${(props) => props.theme.breakpoints.md} {
-    width: 70%;
-  }
+const Splitter = styled.hr`
+  border-color: ${(props) => props.theme.typography.colors.textEmphasis};
 `;
-
-const InfoColumn = styled.div`
-  padding: 0 1rem;
-
-  ${(props) => props.theme.breakpoints.md} {
-    width: 30%;
-  }
-`;
-
-const Post = styled.div``;
 
 const BlogPost = ({ data }) => {
   const { post } = data;
+  const { edges: posts } = data.posts;
+
+  let index = 0;
+
+  for (let i = 0; i < posts.length; i += 1) {
+    if (post.slug === posts[i].node.slug) {
+      index = i;
+      break;
+    }
+  }
+
+  const previousPost = posts[index + 1];
+  const nextPost = posts[index - 1];
+
   return (
     <Layout>
       <SEO title={post.title} />
@@ -81,15 +92,32 @@ const BlogPost = ({ data }) => {
       </Header>
       <Section>
         <Container>
-          <Row>
-            <ContentColumn>
-              <Post>
-                <h1>{post.title}</h1>
-                {documentToReactComponents(post.content.json)}
-              </Post>
-            </ContentColumn>
-            <InfoColumn />
-          </Row>
+          <BlogPostDetail post={post} />
+          <Splitter />
+          <Links>
+            {previousPost ? (
+              <BlogLink>
+                <div>&lt;</div>
+                <div>
+                  <Link to={`/blog/${previousPost.node.slug}`}>
+                    {previousPost.node.title}
+                  </Link>
+                </div>
+              </BlogLink>
+            ) : (
+              <div />
+            )}
+            {nextPost ? (
+              <BlogLink>
+                <div>
+                  <Link to={`/blog/${nextPost.node.slug}`}>
+                    {nextPost.node.title}
+                  </Link>
+                </div>
+                <div>&gt;</div>
+              </BlogLink>
+            ) : null}
+          </Links>
         </Container>
       </Section>
     </Layout>
@@ -100,9 +128,13 @@ BlogPost.propTypes = {
   data: shape({
     post: shape({
       title: string.isRequired,
-      content: shape({ json: string.isRequired }).isRequired,
+      content: shape({ json: shape({}).isRequired }).isRequired,
       publishedAt: string.isRequired,
+      headerImage: shape({}).isRequired,
     }).isRequired,
+    posts: shape({
+      edges: arrayOf(shape({ node: shape({ title: string, slug: string }) })),
+    }),
   }).isRequired,
 };
 
@@ -110,8 +142,17 @@ export default BlogPost;
 
 export const query = graphql`
   query($slug: String!) {
+    posts: allContentfulBlogPost(sort: { fields: [publishedAt], order: DESC }) {
+      edges {
+        node {
+          title
+          slug
+        }
+      }
+    }
     post: contentfulBlogPost(slug: { eq: $slug }) {
       title
+      slug
       publishedAt
       content {
         json

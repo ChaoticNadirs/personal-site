@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "dependencies": {
     "@contentful/rich-text-react-renderer": "^14.1.1",
+    "@contentful/rich-text-types": "^14.1.1",
     "@fortawesome/fontawesome-svg-core": "^1.2.30",
     "@fortawesome/free-brands-svg-icons": "^5.14.0",
     "@fortawesome/free-solid-svg-icons": "^5.14.0",
@@ -27,6 +28,7 @@
     "react-dom": "^16.13.1",
     "react-helmet": "^6.1.0",
     "react-scroll": "^1.8.1",
+    "react-syntax-highlighter": "^13.5.1",
     "styled-components": "^5.1.1",
     "styled-normalize": "^8.0.7"
   },

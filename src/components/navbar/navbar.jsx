@@ -28,6 +28,7 @@ const StyledNav = styled.nav`
     css`
       background-color: transparent;
       border-bottom: none;
+      box-shadow: none;
     `}
 
   a {
@@ -38,6 +39,9 @@ const StyledNav = styled.nav`
       !props.isBurgerActive &&
       css`
         color: white;
+        :visited {
+          color: white;
+        }
       `}
   }
 `;
