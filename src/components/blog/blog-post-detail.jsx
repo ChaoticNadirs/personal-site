@@ -3,9 +3,10 @@ import styled from "styled-components";
 import { documentToReactComponents } from "@contentful/rich-text-react-renderer";
 import { MARKS, BLOCKS } from "@contentful/rich-text-types";
 import SyntaxHighlighter from "react-syntax-highlighter";
-import { shape, string } from "prop-types";
+import { shape, string, arrayOf } from "prop-types";
 import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import dayjs from "dayjs";
+import AvatarSmall from "../avatar/avatar-small";
 
 const Post = styled.div`
   padding: 2rem 0;
@@ -19,11 +20,43 @@ const Post = styled.div`
       font-size: 2rem;
     }
   }
+
+  h2 {
+    color: ${(props) => props.theme.brand.primary};
+    margin: 2rem 0 0.5rem 0;
+  }
 `;
 
-const Date = styled.p`
-  color: ${(props) => props.theme.typography.colors.textEmphasis};
+const Tag = styled.div`
+  background-color: ${(props) => props.theme.brand.primary};
+  color: white;
+  padding: 0.5rem 1rem;
+  font-weight: bold;
+  border-radius: 0.25rem;
+  display: inline-block;
+  margin-right: 1rem;
+  margin-bottom: 1.5rem;
+`;
+
+const Author = styled.div`
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+`;
+
+const Splitter = styled.hr`
+  border-color: ${(props) => props.theme.typography.colors.textEmphasis};
   margin-bottom: 2rem;
+`;
+
+const PublishInfo = styled.div`
+  margin-left: 0.5rem;
+`;
+
+const Name = styled.div`
+  text-transform: uppercase;
+  font-weight: bold;
+  font-size: 1.125rem;
 `;
 
 const BlogPostDetail = ({ post }) => {
@@ -57,7 +90,18 @@ const BlogPostDetail = ({ post }) => {
   return (
     <Post>
       <h1>{post.title}</h1>
-      <Date>{dayjs(post.publishedAt).format("DD MMM YYYY")}</Date>
+      <Author>
+        <AvatarSmall />
+        <PublishInfo>
+          <Name>Christian Coda</Name>
+          <div>{dayjs(post.publishedAt).format("DD MMM YYYY")}</div>
+        </PublishInfo>
+      </Author>
+
+      {post.tags.map((t) => (
+        <Tag key={t}>{t}</Tag>
+      ))}
+      <Splitter />
       {documentToReactComponents(post.content.json, options)}
     </Post>
   );
@@ -66,6 +110,7 @@ const BlogPostDetail = ({ post }) => {
 BlogPostDetail.propTypes = {
   post: shape({
     title: string.isRequired,
+    tags: arrayOf(string).isRequired,
     content: shape({ json: shape({}).isRequired }).isRequired,
     publishedAt: string.isRequired,
   }).isRequired,

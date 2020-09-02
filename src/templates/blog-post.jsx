@@ -12,7 +12,7 @@ const Header = styled(BackgroundImage)`
   background-color: ${(props) => props.theme.brand.primary};
   color: white;
   font-size: 3rem;
-  padding: 10rem 0 9rem 0;
+  padding: 8rem 0 7rem 0;
   text-transform: uppercase;
   text-align: center;
   width: 100%;
@@ -20,6 +20,10 @@ const Header = styled(BackgroundImage)`
   background-repeat: none;
   background-size: cover;
   position: relative;
+
+  ${(props) => props.theme.breakpoints.md} {
+    padding: 10rem 0 9rem 0;
+  }
 `;
 
 const Overlay = styled.div`
@@ -154,6 +158,7 @@ export const query = graphql`
       title
       slug
       publishedAt
+      tags
       content {
         json
       }
