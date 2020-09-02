@@ -22,7 +22,7 @@ const Header = styled(BackgroundImage)`
   position: relative;
 
   ${(props) => props.theme.breakpoints.md} {
-    padding: 10rem 0 9rem 0;
+    padding: 12rem 0 11rem 0;
   }
 `;
 
@@ -37,6 +37,18 @@ const Overlay = styled.div`
 
 const Heading = styled.div`
   position: relative;
+
+  a {
+    color: white;
+
+    :visited {
+      color: white;
+    }
+
+    :hover {
+      color: ${(props) => props.theme.brand.primary};
+    }
+  }
 `;
 
 const Section = styled.section`
@@ -92,7 +104,9 @@ const BlogPost = ({ data }) => {
       <SEO title={post.title} />
       <Header Tag="header" fluid={post.headerImage.fluid}>
         <Overlay />
-        <Heading>Blog / Home</Heading>
+        <Heading>
+          <Link to="/">Home</Link> / Blog
+        </Heading>
       </Header>
       <Section>
         <Container>
