@@ -1,4 +1,7 @@
+import themeBase from "./base";
+
 const theme = {
+  ...themeBase,
   brand: {
     primary: "#00b3aa",
   },
@@ -39,16 +42,6 @@ const theme = {
   },
   switch: {
     backgroundColor: "#d0d0d0",
-  },
-  breakpoints: {
-    xxl: "@media screen and (min-width: 1400px)",
-    xl: "@media screen and (min-width: 1200px)",
-    lg: "@media screen and (min-width: 992px)",
-    md: "@media screen and (min-width: 768px)",
-    sm: "@media screen and (min-width: 576px)",
-  },
-  spacing: {
-    lg: "5rem",
   },
 };
 

@@ -6,6 +6,7 @@ import styled from "styled-components";
 const Image = styled(Img)`
   border-radius: 50%;
   border: 8px solid white;
+  background-color: white;
   box-shadow: 1px 1px 5px 0px rgba(0, 0, 0, 0.75);
 `;
 
