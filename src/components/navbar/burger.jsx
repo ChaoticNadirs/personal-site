@@ -14,6 +14,10 @@ const StyledBurger = styled.button`
   border-radius: 0.25rem;
   color: ${(props) => props.theme.navbar.color};
 
+  :focus {
+    outline-color: ${(props) => props.theme.brand.primary};
+  }
+
   ${(props) => props.theme.breakpoints.md} {
     display: none;
   }

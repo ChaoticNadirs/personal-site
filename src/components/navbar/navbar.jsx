@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styled, { css } from "styled-components";
 import { bool } from "prop-types";
+import { Link } from "gatsby";
 import Burger from "./burger";
 import Menu from "./menu";
 import Container from "../container/container";
@@ -53,12 +54,19 @@ const StyledContainer = styled(Container)`
   justify-content: space-between;
 `;
 
-const Brand = styled.a`
+const Brand = styled(Link)`
   padding-top: 0.3125rem;
   padding-bottom: 0.3125rem;
-  font-size: 1.25rem;
+  font-size: 1.5rem;
+  letter-spacing: 0.25rem;
+  font-weight: bold;
   text-decoration: none;
   white-space: nowrap;
+  color: ${(props) => props.theme.navbar.color};
+
+  :visited {
+    color: ${(props) => props.theme.navbar.color};
+  }
 `;
 
 const Navbar = ({ useScrollLinks }) => {
@@ -84,7 +92,7 @@ const Navbar = ({ useScrollLinks }) => {
       isBurgerActive={isBurgerActive}
     >
       <StyledContainer>
-        <Brand href="/#intro">CC</Brand>
+        <Brand to="/">CC</Brand>
         <Burger onClick={onBurgerClick} />
         <Menu isOpen={isBurgerActive} useScrollLinks={useScrollLinks} />
       </StyledContainer>

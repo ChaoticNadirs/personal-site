@@ -21,7 +21,7 @@ const theme = {
   },
   navbar: {
     backgroundColor: "white",
-    color: "#959595",
+    color: "#212529",
     shadow: "0 1px 6px rgba(0,0,0,.175)",
     border: "1px solid rgba(0,0,0,.125)",
   },
