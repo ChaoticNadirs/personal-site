@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { graphql, useStaticQuery } from "gatsby";
 import PortfolioItem from "./portfolio-item";
-import getPortfolioItems from "./portfolio-items";
 
 const Carousel = styled.div`
   display: flex;
@@ -68,8 +68,33 @@ const Dot = styled.span`
 `;
 
 const PortfolioCarousel = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      items: allContentfulPortfolioItem(sort: { fields: [order], order: ASC }) {
+        edges {
+          node {
+            title
+            url
+            urlText
+            text {
+              text
+            }
+            technologies
+            order
+            image {
+              title
+              fluid(quality: 95) {
+                ...GatsbyContentfulFluid
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
   const [activeSlideId, setActiveSlideId] = useState(1);
-  const portfolioItems = getPortfolioItems();
+  const { edges: portfolioItems } = data.items;
 
   const handleArrowClick = (increment) => {
     const newIndex = activeSlideId + increment;
@@ -92,22 +117,21 @@ const PortfolioCarousel = () => {
           alt="previous slide"
           onClick={() => handleArrowClick(-1)}
         />
-        {portfolioItems.map(
-          ({ id, title, text, image, url, urlText, technologies }) => {
-            return (
-              <Slide key={id} active={activeSlideId === id}>
-                <PortfolioItem
-                  title={title}
-                  text={text}
-                  image={image}
-                  url={url}
-                  urlText={urlText}
-                  technologies={technologies}
-                />
-              </Slide>
-            );
-          }
-        )}
+
+        {portfolioItems.map(({ node }) => {
+          return (
+            <Slide key={node.title} active={activeSlideId === node.order}>
+              <PortfolioItem
+                title={node.title}
+                text={node.text.text}
+                image={node.image}
+                url={node.url}
+                urlText={node.urlText}
+                technologies={node.technologies}
+              />
+            </Slide>
+          );
+        })}
         <Arrow
           icon="chevron-right"
           size="2x"
@@ -117,13 +141,13 @@ const PortfolioCarousel = () => {
         />
       </Carousel>
       <Dots>
-        {portfolioItems.map(({ id }) => {
+        {portfolioItems.map(({ node }) => {
           return (
             <Dot
-              key={id}
-              onClick={() => setActiveSlideId(id)}
+              key={node.title}
+              onClick={() => setActiveSlideId(node.order)}
               role="button"
-              active={activeSlideId === id}
+              active={activeSlideId === node.order}
             />
           );
         })}

@@ -1,7 +1,8 @@
 import React from "react";
 import styled from "styled-components";
-import { string, arrayOf, shape, number } from "prop-types";
+import { string, arrayOf, shape } from "prop-types";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import Img from "gatsby-image";
 
 const StyledPorfolioItem = styled.div`
   display: flex;
@@ -82,7 +83,7 @@ const PortfolioItem = ({ title, url, image, text, urlText, technologies }) => {
   return (
     <StyledPorfolioItem>
       <ImageContainer>
-        <img src={image} alt={title} />
+        <Img fluid={image.fluid} alt={title} />
       </ImageContainer>
       <TextContainer>
         <h3>{title}</h3>
@@ -91,9 +92,11 @@ const PortfolioItem = ({ title, url, image, text, urlText, technologies }) => {
         </a>
         <p>{text}</p>
         <TechList>
-          {technologies.map(({ id, icon }) => (
-            <li key={id}>
-              <FontAwesomeIcon icon={icon} size="3x" fixedWidth />
+          {technologies.map((tech, i) => (
+            // index is stable
+            // eslint-disable-next-line react/no-array-index-key
+            <li key={i}>
+              <FontAwesomeIcon icon={["fab", tech]} size="3x" fixedWidth />
             </li>
           ))}
         </TechList>
@@ -103,14 +106,12 @@ const PortfolioItem = ({ title, url, image, text, urlText, technologies }) => {
 };
 
 PortfolioItem.propTypes = {
-  image: string.isRequired,
+  image: shape({}).isRequired,
   title: string.isRequired,
   url: string.isRequired,
   text: string.isRequired,
   urlText: string.isRequired,
-  technologies: arrayOf(
-    shape({ id: number.isRequired, icon: arrayOf(string).isRequired })
-  ).isRequired,
+  technologies: arrayOf(string).isRequired,
 };
 
 export default PortfolioItem;

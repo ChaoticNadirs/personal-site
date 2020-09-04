@@ -20,7 +20,12 @@ const AvatarSmall = () => {
     }
   `);
 
-  return <Image fixed={data.placeholderImage.childImageSharp.fixed} />;
+  return (
+    <Image
+      fixed={data.placeholderImage.childImageSharp.fixed}
+      alt="red chair"
+    />
+  );
 };
 
 export default AvatarSmall;
