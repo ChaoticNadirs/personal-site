@@ -1,6 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import { string } from "prop-types";
+import { string, shape } from "prop-types";
+import Img from "gatsby-image";
 
 const StyledTestimonial = styled.div`
   position: relative;
@@ -31,13 +32,14 @@ const Content = styled.div`
 const Person = styled.div`
   display: flex;
   align-items: center;
-  color: ${(props) => props.theme.typography.colors.textEmphasis};
 
   img {
     border-radius: 100%;
-    height: 50px;
-    margin-right: 1.5rem;
   }
+`;
+
+const PersonInfo = styled.div`
+  margin-left: 1.5rem;
 `;
 
 const Name = styled.div`
@@ -48,7 +50,9 @@ const Name = styled.div`
   text-transform: uppercase;
 `;
 
-const JobTitle = styled.div``;
+const JobTitle = styled.div`
+  color: ${(props) => props.theme.typography.colors.textEmphasis};
+`;
 
 const Testimonial = ({ image, title, text, name }) => {
   return (
@@ -56,11 +60,11 @@ const Testimonial = ({ image, title, text, name }) => {
       <Content>
         <p>{text}</p>
         <Person>
-          <img src={image} alt={name} />
-          <div>
+          <Img fixed={image.fixed} alt={title} />
+          <PersonInfo>
             <Name>{name}</Name>
             <JobTitle>{title}</JobTitle>
-          </div>
+          </PersonInfo>
         </Person>
       </Content>
     </StyledTestimonial>
@@ -68,7 +72,7 @@ const Testimonial = ({ image, title, text, name }) => {
 };
 
 Testimonial.propTypes = {
-  image: string.isRequired,
+  image: shape({}).isRequired,
   title: string.isRequired,
   text: string.isRequired,
   name: string.isRequired,

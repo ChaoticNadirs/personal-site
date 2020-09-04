@@ -1,9 +1,9 @@
 import React from "react";
 import styled from "styled-components";
+import { useStaticQuery, graphql } from "gatsby";
 import Container from "../container/container";
 import SectionHeading from "../typography/section-heading";
 import Testimonial from "./testimonial";
-import getTestimonials from "./testimonial-items";
 
 const StyledSection = styled.section`
   background-color: ${(props) => props.theme.section.backgroundDark};
@@ -22,21 +22,43 @@ const Deck = styled.div`
 `;
 
 const Testimonials = () => {
-  const skills = getTestimonials();
+  const data = useStaticQuery(graphql`
+    query {
+      items: allContentfulTestimonial(limit: 3) {
+        edges {
+          node {
+            name
+            role
+            text {
+              text
+            }
+            image {
+              title
+              fixed(height: 50, quality: 95) {
+                ...GatsbyContentfulFixed
+              }
+            }
+          }
+        }
+      }
+    }
+  `);
+
+  const { edges: testimonials } = data.items;
 
   return (
     <StyledSection id="testimonials">
       <Container>
         <SectionHeading text="Testimonials" />
         <Deck>
-          {skills.map(({ id, image, name, title, text }) => {
+          {testimonials.map(({ node }) => {
             return (
               <Testimonial
-                key={id}
-                image={image}
-                title={title}
-                name={name}
-                text={text}
+                key={node.name}
+                image={node.image}
+                title={node.role}
+                name={node.name}
+                text={node.text.text}
               />
             );
           })}
