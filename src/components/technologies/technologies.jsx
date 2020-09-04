@@ -1,21 +1,17 @@
 import React from "react";
 import styled from "styled-components";
+import { useStaticQuery, graphql } from "gatsby";
+import BackgroundImage from "gatsby-background-image";
 import getTechnologies from "./technology-items";
 import Technology from "./technology";
 import Container from "../container/container";
-import background from "../../images/background-stowe.jpg";
 
-const StyledTechnologies = styled.section`
+const StyledTechnologies = styled(BackgroundImage)`
   padding: 12rem 0 10rem 0;
-  background-image: url(${background});
   background-repeat: no-repeat;
-  background-position: 100% 0;
+  background-position: 80% 0;
   background-size: cover;
   background-attachment: fixed;
-
-  @media (orientation: portrait) {
-    background-position: 80% 0;
-  }
 `;
 
 const TechnologyList = styled.ul`
@@ -28,10 +24,26 @@ const TechnologyList = styled.ul`
 `;
 
 const Technologies = () => {
+  const data = useStaticQuery(graphql`
+    query {
+      backgroundImage: file(relativePath: { eq: "stowe.jpg" }) {
+        childImageSharp {
+          fluid(maxWidth: 1920, quality: 100) {
+            ...GatsbyImageSharpFluid
+          }
+        }
+      }
+    }
+  `);
+
   const technologies = getTechnologies();
 
   return (
-    <StyledTechnologies>
+    <StyledTechnologies
+      Tag="section"
+      fluid={data.backgroundImage.childImageSharp.fluid}
+      backgroundColor="#040e18"
+    >
       <Container>
         <TechnologyList>
           {technologies.map(({ id, icon }) => {

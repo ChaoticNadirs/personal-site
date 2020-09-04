@@ -19,7 +19,7 @@ const getSkills = () => {
       icon: "database",
       title: "Database",
       text:
-        "I use relational databases such as MSSQL with Entity Framework, and also document databases like RavenDb & ElasticSearch.",
+        "I use relational databases such as MSSQL with Entity Framework, and also document databases like Dynamo & RavenDB.",
     },
     {
       id: 4,

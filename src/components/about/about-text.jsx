@@ -31,7 +31,7 @@ const AboutText = () => {
       </Paragraph>
       <Paragraph>
         I have over 15 years of experience and a diverse skillset ranging from
-        React &amp; Javascript, all the way to C#, C++ and dev-ops in AWS.
+        React &amp; Javascript, all the way to C#, NodeJS and dev-ops in AWS.
       </Paragraph>
       <Paragraph>
         What I enjoy most about the software world is the opportunity to be

@@ -83,7 +83,7 @@ const Intro = () => {
   ];
 
   return (
-    <Header Tag="section" fluid={sources} backgroundColor="#040e18">
+    <Header Tag="header" fluid={sources} backgroundColor="#040e18">
       <Overlay />
       <Content>
         <Avatar />
