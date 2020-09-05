@@ -57,7 +57,7 @@ const Author = styled.div`
 
 const BlogPage = ({ data }) => (
   <Layout>
-    <SEO title="Blog | Christian Coda" />
+    <SEO title="Blog" />
     <BlogBanner image={data.bannerImage.childImageSharp} />
     <Section>
       <Container>

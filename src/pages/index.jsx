@@ -13,7 +13,7 @@ import Blog from "../components/blog/blog";
 
 const IndexPage = ({ data }) => (
   <Layout useScrollLinks>
-    <SEO title="Christian Coda - Software Engineer" />
+    <SEO title="Home" />
     <Intro />
     <About />
     <Skills />
