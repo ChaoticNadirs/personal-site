@@ -3,7 +3,7 @@ import themeBase from "./base";
 const theme = {
   ...themeBase,
   brand: {
-    primary: "#00b3aa",
+    primary: "#ef476f",
   },
   section: {
     backgroundDark: "#101112",

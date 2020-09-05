@@ -7,6 +7,7 @@ import { shape, string, arrayOf } from "prop-types";
 import { obsidian } from "react-syntax-highlighter/dist/esm/styles/hljs";
 import dayjs from "dayjs";
 import AvatarSmall from "../avatar/avatar-small";
+import Tag from "./blog-post-tag";
 
 const Post = styled.div`
   padding: 2rem 0;
@@ -27,21 +28,10 @@ const Post = styled.div`
   }
 `;
 
-const Tag = styled.div`
-  background-color: ${(props) => props.theme.brand.primary};
-  color: white;
-  padding: 0.5rem 1rem;
-  font-weight: bold;
-  border-radius: 0.25rem;
-  display: inline-block;
-  margin-right: 1rem;
-  margin-bottom: 1.5rem;
-`;
-
 const Author = styled.div`
   display: flex;
   align-items: center;
-  margin-bottom: 1rem;
+  margin-bottom: 1.5rem;
 `;
 
 const Splitter = styled.hr`
@@ -99,7 +89,7 @@ const BlogPostDetail = ({ post }) => {
       </Author>
 
       {post.tags.map((t) => (
-        <Tag key={t}>{t}</Tag>
+        <Tag key={t} text={t} />
       ))}
       <Splitter />
       {documentToReactComponents(post.content.json, options)}

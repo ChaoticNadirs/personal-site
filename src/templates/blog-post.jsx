@@ -2,54 +2,11 @@ import React from "react";
 import { graphql, Link } from "gatsby";
 import { string, shape, arrayOf } from "prop-types";
 import styled from "styled-components";
-import BackgroundImage from "gatsby-background-image";
 import Layout from "../components/layout";
 import SEO from "../components/seo";
 import Container from "../components/container/container";
 import BlogPostDetail from "../components/blog/blog-post-detail";
-
-const Header = styled(BackgroundImage)`
-  background-color: ${(props) => props.theme.brand.primary};
-  color: white;
-  font-size: 3rem;
-  padding: 8rem 0 7rem 0;
-  text-transform: uppercase;
-  text-align: center;
-  width: 100%;
-  background-position: center center;
-  background-repeat: none;
-  background-size: cover;
-  position: relative;
-
-  ${(props) => props.theme.breakpoints.md} {
-    padding: 12rem 0 11rem 0;
-  }
-`;
-
-const Overlay = styled.div`
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color: rgba(0, 0, 0, 0.75);
-`;
-
-const Heading = styled.div`
-  position: relative;
-
-  a {
-    color: white;
-
-    :visited {
-      color: white;
-    }
-
-    :hover {
-      color: ${(props) => props.theme.brand.primary};
-    }
-  }
-`;
+import BlogBanner from "../components/blog/blog-banner";
 
 const Section = styled.section`
   background-color: ${(props) => props.theme.section.backgroundLight};
@@ -102,12 +59,7 @@ const BlogPost = ({ data }) => {
   return (
     <Layout>
       <SEO title={post.title} />
-      <Header Tag="header" fluid={post.headerImage.fluid}>
-        <Overlay />
-        <Heading>
-          <Link to="/">Home</Link> / Blog
-        </Heading>
-      </Header>
+      <BlogBanner image={post.headerImage} />
       <Section>
         <Container>
           <BlogPostDetail post={post} />

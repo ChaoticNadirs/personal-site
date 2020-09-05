@@ -38,6 +38,7 @@ export const query = graphql`
   query {
     blogPosts: allContentfulBlogPost(
       sort: { fields: [publishedAt], order: DESC }
+      limit: 3
     ) {
       edges {
         node {

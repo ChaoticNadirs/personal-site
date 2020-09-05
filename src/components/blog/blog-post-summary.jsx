@@ -1,9 +1,10 @@
 import React from "react";
-import styled from "styled-components";
-import { string, shape } from "prop-types";
+import styled, { css } from "styled-components";
+import { string, shape, bool, arrayOf } from "prop-types";
 import Img from "gatsby-image";
 import { Link } from "gatsby";
 import dayjs from "dayjs";
+import Tag from "./blog-post-tag";
 
 const StyledBlogPostSummary = styled.div`
   position: relative;
@@ -17,12 +18,6 @@ const StyledBlogPostSummary = styled.div`
   border-radius: 0.25rem;
   margin-bottom: 2rem;
   box-shadow: ${(props) => props.theme.card.shadow};
-
-  ${(props) => props.theme.breakpoints.lg} {
-    flex: 1 0 0%;
-    margin-left: 1rem;
-    margin-right: 1rem;
-  }
 `;
 
 const Content = styled.div`
@@ -37,11 +32,16 @@ const Header = styled.div`
 const HeaderImage = styled(Img)`
   border-top-left-radius: 0.25rem;
   border-top-right-radius: 0.25rem;
-  transition: all 0.3s ease;
 
-  :hover {
-    transform: scale(1.25);
-  }
+  ${(props) =>
+    props.magnifyEffect &&
+    css`
+      transition: all 0.3s ease;
+
+      :hover {
+        transform: scale(1.25);
+      }
+    `}
 `;
 
 const Date = styled.p`
@@ -53,18 +53,32 @@ const ReadMoreLink = styled(Link)`
   text-transform: uppercase;
 `;
 
-const BlogPostSummary = ({ title, slug, text, date, headerImage }) => {
+const BlogPostSummary = ({
+  title,
+  slug,
+  text,
+  date,
+  headerImage,
+  className,
+  magnifyEffect,
+  tags,
+}) => {
   const url = `/blog/${slug}/`;
   return (
-    <StyledBlogPostSummary>
+    <StyledBlogPostSummary className={className}>
       <Header>
         <Link to={url}>
-          <HeaderImage fluid={headerImage.fluid} alt={headerImage.title} />
+          <HeaderImage
+            fluid={headerImage.fluid}
+            alt={headerImage.title}
+            magnifyEffect={magnifyEffect}
+          />
         </Link>
       </Header>
       <Content>
         <h3>{title}</h3>
         <Date>{dayjs(date).format("DD MMM YYYY")}</Date>
+        {tags.length > 0 ? tags.map((t) => <Tag key={t} text={t} />) : null}
         <p>{text}</p>
         <ReadMoreLink to={url}>Read more</ReadMoreLink>
       </Content>
@@ -78,6 +92,15 @@ BlogPostSummary.propTypes = {
   text: string.isRequired,
   date: string.isRequired,
   headerImage: shape({ fluid: shape({}).isRequired }).isRequired,
+  tags: arrayOf(string),
+  className: string,
+  magnifyEffect: bool,
+};
+
+BlogPostSummary.defaultProps = {
+  className: "",
+  magnifyEffect: false,
+  tags: [],
 };
 
 export default BlogPostSummary;
