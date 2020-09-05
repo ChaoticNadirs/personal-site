@@ -3,6 +3,7 @@ import styled from "styled-components";
 import BackgroundImage from "gatsby-background-image";
 import { useStaticQuery, graphql } from "gatsby";
 import Avatar from "../avatar/avatar";
+import ScrollIcon from "../scroll-icon/scroll-icon";
 
 const Header = styled(BackgroundImage)`
   background-repeat: no-repeat;
@@ -54,6 +55,10 @@ const Subheading = styled.h2`
   }
 `;
 
+const StyledScrollIcon = styled(ScrollIcon)`
+  margin-top: 5rem;
+`;
+
 const Intro = () => {
   const data = useStaticQuery(graphql`
     query {
@@ -89,6 +94,7 @@ const Intro = () => {
         <Avatar />
         <Heading>Christian Coda</Heading>
         <Subheading>Software Engineer</Subheading>
+        <StyledScrollIcon />
       </Content>
     </Header>
   );
