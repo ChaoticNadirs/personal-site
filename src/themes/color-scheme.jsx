@@ -6,8 +6,9 @@ const useColorScheme = () => {
 
   const [mode, setMode] = useState(
     () =>
-      window.localStorage.getItem(localStorageKey) ||
-      (window.matchMedia(query).matches ? "dark" : "light")
+      typeof window !== `undefined` &&
+      (window.localStorage.getItem(localStorageKey) ||
+        (window.matchMedia(query).matches ? "dark" : "light"))
   );
 
   const toggleMode = () => {
