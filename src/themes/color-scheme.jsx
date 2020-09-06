@@ -1,18 +1,18 @@
-import { useState, useEffect } from "react";
+/* eslint-disable no-unused-expressions */
+/* eslint-disable no-nested-ternary */
+// from here https://css-tricks.com/a-dark-mode-toggle-with-react-and-themeprovider/
+import { useEffect, useState } from "react";
 
-const useColorScheme = () => {
-  const query = "(prefers-color-scheme: dark)";
-  const localStorageKey = "colorScheme";
+const useDarkMode = () => {
+  const [theme, setTheme] = useState("light");
+  const [componentMounted, setComponentMounted] = useState(false);
+  const setMode = (mode) => {
+    window.localStorage.setItem("theme", mode);
+    setTheme(mode);
+  };
 
-  const [mode, setMode] = useState(
-    () =>
-      typeof window !== `undefined` &&
-      (window.localStorage.getItem(localStorageKey) ||
-        (window.matchMedia(query).matches ? "dark" : "light"))
-  );
-
-  const toggleMode = () => {
-    if (mode === "light") {
+  const toggleTheme = () => {
+    if (theme === "light") {
       setMode("dark");
     } else {
       setMode("light");
@@ -20,17 +20,18 @@ const useColorScheme = () => {
   };
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
-    const handleChange = () => setMode(mediaQuery.matches ? "dark" : "light");
-    mediaQuery.addListener(handleChange);
-    return () => mediaQuery.removeListener(handleChange);
+    const localTheme = window.localStorage.getItem("theme");
+    window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches &&
+    !localTheme
+      ? setMode("dark")
+      : localTheme
+      ? setTheme(localTheme)
+      : setMode("light");
+    setComponentMounted(true);
   }, []);
 
-  useEffect(() => {
-    window.localStorage.setItem(localStorageKey, mode);
-  }, [mode]);
-
-  return [mode, toggleMode];
+  return [theme, toggleTheme, componentMounted];
 };
 
-export default useColorScheme;
+export default useDarkMode;

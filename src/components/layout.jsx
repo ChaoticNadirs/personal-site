@@ -34,7 +34,7 @@ import lightTheme from "../themes/light";
 import GlobalStyle from "../themes/global-style";
 import Footer from "./footer/footer";
 import Navbar from "./navbar/navbar";
-import useColorScheme from "../themes/color-scheme";
+import useDarkMode from "../themes/color-scheme";
 
 library.add(
   faGithub,
@@ -63,20 +63,21 @@ library.add(
 );
 
 const Layout = ({ children, useScrollLinks }) => {
-  const [colorScheme, toggleColorScheme] = useColorScheme();
+  const [theme, toggleTheme, componentMounted] = useDarkMode();
 
-  const theme = colorScheme === "light" ? lightTheme : darkTheme;
+  const themeMode = theme === "light" ? lightTheme : darkTheme;
+
+  if (!componentMounted) {
+    return <div />;
+  }
 
   return (
-    <ThemeProvider theme={theme}>
+    <ThemeProvider theme={themeMode}>
       <>
         <GlobalStyle />
         <Navbar useScrollLinks={useScrollLinks} />
         <main>{children}</main>
-        <Footer
-          darkMode={colorScheme === "dark"}
-          onDarkModeToggle={toggleColorScheme}
-        />
+        <Footer darkMode={theme === "dark"} onDarkModeToggle={toggleTheme} />
       </>
     </ThemeProvider>
   );
