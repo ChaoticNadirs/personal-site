@@ -66,6 +66,7 @@ const Intro = () => {
         childImageSharp {
           fluid(maxWidth: 768, quality: 100) {
             ...GatsbyImageSharpFluid_withWebp
+            ...GatsbyImageSharpFluidLimitPresentationSize
           }
         }
       }
@@ -73,6 +74,7 @@ const Intro = () => {
         childImageSharp {
           fluid(maxWidth: 1920, quality: 100) {
             ...GatsbyImageSharpFluid_withWebp
+            ...GatsbyImageSharpFluidLimitPresentationSize
           }
         }
       }
