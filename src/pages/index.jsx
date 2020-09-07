@@ -6,7 +6,7 @@ import SEO from "../components/seo";
 import Intro from "../components/intro/intro";
 import About from "../components/about/about";
 import Skills from "../components/skills/skills";
-import Technologies from "../components/technologies/technologies";
+// import Technologies from "../components/technologies/technologies";
 import Portfolio from "../components/portfolio/portfolio";
 import Testimonials from "../components/testimonials/testimonials";
 import Blog from "../components/blog/blog";
@@ -17,7 +17,7 @@ const IndexPage = ({ data }) => (
     <Intro />
     <About />
     <Skills />
-    <Technologies />
+    {/* <Technologies /> */}
     <Blog posts={data.blogPosts.edges} />
     <Portfolio />
     <Testimonials />
