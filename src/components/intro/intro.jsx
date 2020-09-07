@@ -9,10 +9,13 @@ const Header = styled(BackgroundImage)`
   background-repeat: no-repeat;
   background-position: 100% 50%;
   background-size: cover;
-  background-attachment: fixed;
   height: 100vh;
   position: relative;
   text-align: center;
+
+  ${(props) => props.theme.breakpoints.xl} {
+    background-attachment: fixed;
+  }
 `;
 
 const Overlay = styled.div`

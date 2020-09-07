@@ -11,7 +11,10 @@ const StyledTechnologies = styled(BackgroundImage)`
   background-repeat: no-repeat;
   background-position: 80% 0;
   background-size: cover;
-  background-attachment: fixed;
+
+  ${(props) => props.theme.breakpoints.xl} {
+    background-attachment: fixed;
+  }
 `;
 
 const TechnologyList = styled.ul`
