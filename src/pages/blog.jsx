@@ -111,7 +111,7 @@ export const query = graphql`
     bannerImage: file(relativePath: { eq: "laptop.jpg" }) {
       childImageSharp {
         fluid(maxWidth: 1920, quality: 95) {
-          ...GatsbyImageSharpFluid
+          ...GatsbyImageSharpFluid_withWebp
         }
       }
     }
@@ -129,8 +129,8 @@ export const query = graphql`
           }
           headerImage {
             title
-            fluid {
-              ...GatsbyContentfulFluid
+            fluid(quality: 95) {
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }

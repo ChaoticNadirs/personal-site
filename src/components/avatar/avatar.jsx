@@ -16,7 +16,7 @@ const Avatar = () => {
       placeholderImage: file(relativePath: { eq: "red-chair.jpg" }) {
         childImageSharp {
           fixed(width: 200, height: 200, quality: 100) {
-            ...GatsbyImageSharpFixed
+            ...GatsbyImageSharpFixed_withWebp
           }
         }
       }

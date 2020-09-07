@@ -84,7 +84,7 @@ const PortfolioCarousel = () => {
             image {
               title
               fluid(quality: 95) {
-                ...GatsbyContentfulFluid
+                ...GatsbyContentfulFluid_withWebp
               }
             }
           }

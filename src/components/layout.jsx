@@ -76,7 +76,7 @@ const Layout = ({ children, useScrollLinks }) => {
       <>
         <GlobalStyle />
         <Navbar useScrollLinks={useScrollLinks} />
-        <main>{children}</main>
+        {children}
         <Footer darkMode={theme === "dark"} onDarkModeToggle={toggleTheme} />
       </>
     </ThemeProvider>

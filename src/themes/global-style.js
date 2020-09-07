@@ -8,6 +8,10 @@ const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  html, body, #___gatsby, #gatsby-focus-wrapper {
+    height:100%;
+  }
+
   body {
     font-family: ${(props) =>
       props.theme.typography.fonts

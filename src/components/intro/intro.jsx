@@ -10,7 +10,7 @@ const Header = styled(BackgroundImage)`
   background-position: 100% 50%;
   background-size: cover;
   background-attachment: fixed;
-  height: 100vh;
+  height: 100%;
   position: relative;
   text-align: center;
 `;
@@ -65,14 +65,14 @@ const Intro = () => {
       mobileImage: file(relativePath: { eq: "waterfall.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 768, quality: 100) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }
       desktopImage: file(relativePath: { eq: "lake.jpg" }) {
         childImageSharp {
           fluid(maxWidth: 1920, quality: 100) {
-            ...GatsbyImageSharpFluid
+            ...GatsbyImageSharpFluid_withWebp
           }
         }
       }

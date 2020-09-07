@@ -35,7 +35,7 @@ const Testimonials = () => {
             image {
               title
               fixed(height: 50, quality: 95) {
-                ...GatsbyContentfulFixed
+                ...GatsbyContentfulFixed_withWebp
               }
             }
           }

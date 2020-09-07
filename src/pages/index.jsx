@@ -50,8 +50,8 @@ export const query = graphql`
           }
           headerImage {
             title
-            fluid {
-              ...GatsbyContentfulFluid
+            fluid(quality: 95) {
+              ...GatsbyContentfulFluid_withWebp
             }
           }
         }
