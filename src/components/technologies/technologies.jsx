@@ -12,8 +12,10 @@ const StyledTechnologies = styled(BackgroundImage)`
   background-position: 80% 0;
   background-size: cover;
 
-  ${(props) => props.theme.breakpoints.xl} {
-    background-attachment: fixed;
+  :after {
+    ${(props) => props.theme.breakpoints.xl} {
+      background-attachment: fixed;
+    }
   }
 `;
 

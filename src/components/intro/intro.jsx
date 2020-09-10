@@ -13,8 +13,10 @@ const Header = styled(BackgroundImage)`
   position: relative;
   text-align: center;
 
-  ${(props) => props.theme.breakpoints.xl} {
-    background-attachment: fixed;
+  :after {
+    ${(props) => props.theme.breakpoints.xl} {
+      background-attachment: fixed;
+    }
   }
 `;
 
