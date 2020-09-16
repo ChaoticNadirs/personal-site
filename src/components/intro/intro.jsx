@@ -90,9 +90,11 @@ const Intro = () => {
   ];
 
   useEffect(() => {
+    const bg = document.getElementById("bg-intro");
+    bg.style.height = `${window.innerHeight}px`;
+
     function updateSize() {
       if (!isMobile) {
-        const bg = document.getElementById("bg-intro");
         bg.style.height = `${window.innerHeight}px`;
       }
     }
