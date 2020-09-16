@@ -115,6 +115,7 @@ const PortfolioCarousel = () => {
           size="2x"
           role="button"
           alt="previous slide"
+          aria-label="previous slide"
           onClick={() => handleArrowClick(-1)}
         />
 
@@ -135,8 +136,8 @@ const PortfolioCarousel = () => {
         <Arrow
           icon="chevron-right"
           size="2x"
-          role="button"
           alt="next slide"
+          aria-label="next slide"
           onClick={() => handleArrowClick(1)}
         />
       </Carousel>
@@ -147,6 +148,7 @@ const PortfolioCarousel = () => {
               key={node.title}
               onClick={() => setActiveSlideId(node.order)}
               role="button"
+              aria-label="select a slide"
               active={activeSlideId === node.order}
             />
           );

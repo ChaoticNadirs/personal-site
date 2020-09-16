@@ -1,5 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
+import { isMobile } from "react-device-detect";
 import BackgroundImage from "gatsby-background-image";
 import { useStaticQuery, graphql } from "gatsby";
 import Avatar from "../avatar/avatar";
@@ -9,15 +10,9 @@ const Header = styled(BackgroundImage)`
   background-repeat: no-repeat;
   background-position: 100% 50%;
   background-size: cover;
-  height: 100vh;
   position: relative;
   text-align: center;
-
-  :after {
-    ${(props) => props.theme.breakpoints.xl} {
-      background-attachment: fixed;
-    }
-  }
+  background-attachment: fixed;
 `;
 
 const Overlay = styled.div`
@@ -94,8 +89,25 @@ const Intro = () => {
     },
   ];
 
+  useEffect(() => {
+    function updateSize() {
+      if (!isMobile) {
+        const bg = document.getElementById("bg-intro");
+        bg.style.height = `${window.innerHeight}px`;
+      }
+    }
+    window.addEventListener("resize", updateSize);
+    updateSize();
+    return () => window.removeEventListener("resize", updateSize);
+  }, []);
+
   return (
-    <Header Tag="header" fluid={sources} backgroundColor="#040e18">
+    <Header
+      Tag="header"
+      fluid={sources}
+      backgroundColor="#040e18"
+      id="bg-intro"
+    >
       <Overlay />
       <Content>
         <Avatar />
