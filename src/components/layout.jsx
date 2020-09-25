@@ -1,5 +1,5 @@
 import React from "react";
-import { node, bool } from "prop-types";
+import { node } from "prop-types";
 import { ThemeProvider } from "styled-components";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import {
@@ -62,7 +62,7 @@ library.add(
   faBootstrap
 );
 
-const Layout = ({ children, useScrollLinks }) => {
+const Layout = ({ children }) => {
   const [theme, toggleTheme, componentMounted] = useDarkMode();
 
   const themeMode = theme === "light" ? lightTheme : darkTheme;
@@ -75,7 +75,7 @@ const Layout = ({ children, useScrollLinks }) => {
     <ThemeProvider theme={themeMode}>
       <>
         <GlobalStyle />
-        <Navbar useScrollLinks={useScrollLinks} />
+        <Navbar />
         {children}
         <Footer darkMode={theme === "dark"} onDarkModeToggle={toggleTheme} />
       </>
@@ -85,11 +85,6 @@ const Layout = ({ children, useScrollLinks }) => {
 
 Layout.propTypes = {
   children: node.isRequired,
-  useScrollLinks: bool,
-};
-
-Layout.defaultProps = {
-  useScrollLinks: false,
 };
 
 export default Layout;

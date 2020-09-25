@@ -12,7 +12,7 @@ import Testimonials from "../components/testimonials/testimonials";
 import Blog from "../components/blog/blog";
 
 const IndexPage = ({ data }) => (
-  <Layout useScrollLinks>
+  <Layout>
     <SEO title="Home" />
     <Intro />
     <About />

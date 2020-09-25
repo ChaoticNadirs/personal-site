@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styled from "styled-components";
-import { func } from "prop-types";
+import { bool, func } from "prop-types";
 
 const StyledBurger = styled.button`
   cursor: pointer;
@@ -10,9 +10,12 @@ const StyledBurger = styled.button`
   width: 2.5rem;
   margin-left: auto;
   background-color: transparent;
-  border: 1px solid ${(props) => props.theme.navbar.color};
+  border: 1px solid;
+  border-color: ${(props) =>
+    props.isAtTop && !props.active ? "white" : props.theme.navbar.color};
   border-radius: 0.25rem;
-  color: ${(props) => props.theme.navbar.color};
+  color: ${(props) =>
+    props.isAtTop && !props.active ? "white" : props.theme.navbar.color};
 
   :focus {
     outline-color: ${(props) => props.theme.brand.primary};
@@ -53,7 +56,7 @@ const StyledBurger = styled.button`
   }
 `;
 
-const Burger = ({ onClick }) => {
+const Burger = ({ onClick, isAtTop }) => {
   const [isActive, setIsActive] = useState(false);
 
   const onBurgerClick = () => {
@@ -69,6 +72,7 @@ const Burger = ({ onClick }) => {
       aria-expanded="false"
       onClick={onBurgerClick}
       active={isActive}
+      isAtTop={isAtTop}
     >
       <span aria-hidden="true" />
       <span aria-hidden="true" />
@@ -79,6 +83,11 @@ const Burger = ({ onClick }) => {
 
 Burger.propTypes = {
   onClick: func.isRequired,
+  isAtTop: bool,
+};
+
+Burger.defaultProps = {
+  isAtTop: false,
 };
 
 export default Burger;

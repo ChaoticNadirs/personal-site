@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { bool } from "prop-types";
-import { Link as ScrollLink } from "react-scroll";
 import { Link } from "gatsby";
 import getMenuItems from "./menu-items";
 
@@ -26,21 +25,24 @@ const Links = styled.div`
 
   a {
     cursor: pointer;
-    color: ${(props) => props.theme.navbar.color};
     font-family: ${(props) => props.theme.typography.fonts.heading};
     font-size: 0.875rem;
     display: block;
-    line-height: 1.5;
+    line-height: 1.4;
     padding: 0.5rem 0;
     text-transform: uppercase;
     text-decoration: none;
+
+    :visited {
+      color: ${(props) => props.theme.navbar.color};
+    }
 
     :hover {
       color: ${(props) => props.theme.brand.primary};
     }
 
-    :visited {
-      color: ${(props) => props.theme.navbar.color};
+    &.active {
+      color: ${(props) => props.theme.brand.primary};
     }
 
     ${(props) => props.theme.breakpoints.md} {
@@ -51,44 +53,21 @@ const Links = styled.div`
       }
     }
   }
-
-  a.active {
-    color: ${(props) => props.theme.brand.primary};
-  }
 `;
 
-const Menu = ({ isOpen, useScrollLinks }) => {
-  const offset = -65;
-  const duration = 500;
-
+const Menu = ({ isOpen }) => {
   const menuItems = getMenuItems();
 
   return (
     <StyledMenu active={isOpen}>
       <Links>
-        {useScrollLinks
-          ? menuItems.map(({ id, to, text }) => {
-              return (
-                <ScrollLink
-                  key={id}
-                  activeClass="active"
-                  to={to}
-                  spy
-                  smooth
-                  offset={offset}
-                  duration={duration}
-                >
-                  {text}
-                </ScrollLink>
-              );
-            })
-          : menuItems.map(({ id, to, text }) => {
-              return (
-                <Link key={id} to={`/#${to}`}>
-                  {text}
-                </Link>
-              );
-            })}
+        {menuItems.map(({ id, to, text }) => {
+          return (
+            <Link key={id} to={to} activeClassName="active">
+              {text}
+            </Link>
+          );
+        })}
       </Links>
     </StyledMenu>
   );
@@ -96,12 +75,10 @@ const Menu = ({ isOpen, useScrollLinks }) => {
 
 Menu.propTypes = {
   isOpen: bool,
-  useScrollLinks: bool,
 };
 
 Menu.defaultProps = {
   isOpen: false,
-  useScrollLinks: false,
 };
 
 export default Menu;

@@ -13,7 +13,8 @@ const Header = styled(BackgroundImage)`
   position: relative;
   text-align: center;
 
-  :after {
+  :after,
+  :before {
     ${(props) => props.theme.breakpoints.xl} {
       background-attachment: fixed;
     }
@@ -26,7 +27,7 @@ const Overlay = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.4);
 `;
 
 const Content = styled.div`
